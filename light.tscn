@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://testing.png" type="Texture" id=1]
+
+[sub_resource type="OccluderPolygon2D" id=1]
+polygon = PoolVector2Array( 55.606, 45.644, 69.9088, 45.644, 190.415, 128.968, 64.3872, -14.847, -64.1433, 138.868 )
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Light2D" type="Light2D" parent="."]
+position = Vector2( 31.0742, 45.0999 )
+texture = ExtResource( 1 )
+energy = 1.5
+shadow_enabled = true
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+position = Vector2( -31.0724, -12.5644 )
+occluder = SubResource( 1 )

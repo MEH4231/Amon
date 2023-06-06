@@ -1,0 +1,39 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Rip.png" type="Texture" id=1]
+[ext_resource path="res://RIP.gd" type="Script" id=2]
+[ext_resource path="res://theme.tres" type="Theme" id=3]
+
+[node name="RIP" type="Node2D"]
+pause_mode = 2
+visible = false
+z_index = 4096
+script = ExtResource( 2 )
+
+[node name="TextureRect" type="TextureRect" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+texture = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2( 960, 540 )
+
+[node name="death_anim-RIP_screen" type="Timer" parent="."]
+one_shot = true
+
+[node name="rip_button" type="Button" parent="."]
+margin_left = 644.708
+margin_top = 752.309
+margin_right = 1273.71
+margin_bottom = 1003.31
+theme = ExtResource( 3 )
+text = "RIP"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="timeout" from="death_anim-RIP_screen" to="." method="_on_death_animRIP_screen_timeout"]
+[connection signal="pressed" from="rip_button" to="." method="_on_rip_button_pressed"]

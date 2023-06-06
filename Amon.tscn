@@ -1,0 +1,110 @@
+[gd_scene load_steps=19 format=2]
+
+[ext_resource path="res://Amon idle facing left.png" type="Texture" id=1]
+[ext_resource path="res://Amon half Walking facing left.png" type="Texture" id=2]
+[ext_resource path="res://Amon.gd" type="Script" id=3]
+[ext_resource path="res://Amon walking facing left.png" type="Texture" id=4]
+[ext_resource path="res://Amon idle facing right.png" type="Texture" id=5]
+[ext_resource path="res://Amon half Walking facing right.png" type="Texture" id=6]
+[ext_resource path="res://Amon Walking facing right.png" type="Texture" id=7]
+[ext_resource path="res://Amon walking facing right with gun.png" type="Texture" id=8]
+[ext_resource path="res://Amon idle facing left with gun.png" type="Texture" id=9]
+[ext_resource path="res://Amon half Walking facing left with gun.png" type="Texture" id=10]
+[ext_resource path="res://Amon walking facing left with gun.png" type="Texture" id=11]
+[ext_resource path="res://Amon half Walking facing right with gun.png" type="Texture" id=12]
+[ext_resource path="res://Amon idle facing right with gun.png" type="Texture" id=13]
+[ext_resource path="res://stats bar.tscn" type="PackedScene" id=14]
+[ext_resource path="res://Amon 1.png" type="Texture" id=15]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 15 ) ],
+"loop": true,
+"name": "death",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 2 ), ExtResource( 4 ), ExtResource( 2 ), ExtResource( 1 ) ],
+"loop": true,
+"name": "walking-left",
+"speed": 10.0
+}, {
+"frames": [ ExtResource( 13 ) ],
+"loop": true,
+"name": "idle-right-gun",
+"speed": 10.0
+}, {
+"frames": [ ExtResource( 12 ), ExtResource( 8 ), ExtResource( 12 ), ExtResource( 13 ) ],
+"loop": true,
+"name": "walking-right-gun",
+"speed": 10.0
+}, {
+"frames": [ ExtResource( 5 ) ],
+"loop": true,
+"name": "idle-right",
+"speed": 10.0
+}, {
+"frames": [ ExtResource( 6 ), ExtResource( 7 ), ExtResource( 6 ), ExtResource( 5 ) ],
+"loop": true,
+"name": "walking-right",
+"speed": 10.0
+}, {
+"frames": [ ExtResource( 10 ), ExtResource( 11 ), ExtResource( 10 ), ExtResource( 9 ) ],
+"loop": true,
+"name": "walking-left-gun",
+"speed": 10.0
+}, {
+"frames": [ ExtResource( 9 ) ],
+"loop": true,
+"name": "idle-left-gun",
+"speed": 10.0
+}, {
+"frames": [ ExtResource( 1 ) ],
+"loop": true,
+"name": "idle-left",
+"speed": 10.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 17.625, 54.2506 )
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 17.9, 54.5785 )
+
+[node name="Amon" type="KinematicBody2D" groups=["persist"]]
+pause_mode = 2
+collision_layer = 32776
+collision_mask = 32785
+script = ExtResource( 3 )
+
+[node name="Amon-Sprite" type="AnimatedSprite" parent="."]
+scale = Vector2( 0.92103, 0.723469 )
+frames = SubResource( 1 )
+animation = "idle-left"
+playing = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 1, -4.25 )
+shape = SubResource( 2 )
+
+[node name="Position2D1" type="Position2D" parent="."]
+position = Vector2( -56.5686, -25.1023 )
+
+[node name="Position2D2" type="Position2D" parent="."]
+position = Vector2( 57.3492, -24.0416 )
+
+[node name="Shoot_timer" type="Timer" parent="."]
+one_shot = true
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 17
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2( 1, -4.25 )
+shape = SubResource( 3 )
+
+[node name="Stats" parent="." instance=ExtResource( 14 )]
+position = Vector2( 0, 67.0492 )
+
+[connection signal="timeout" from="Shoot_timer" to="." method="_on_Shoot_timer_timeout"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]

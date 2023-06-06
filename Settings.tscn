@@ -1,0 +1,72 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://fullscreen.png" type="Texture" id=1]
+[ext_resource path="res://Settings menu.png" type="Texture" id=2]
+[ext_resource path="res://Settings2.gd" type="Script" id=3]
+[ext_resource path="res://theme.tres" type="Theme" id=4]
+[ext_resource path="res://Control Menu.png" type="Texture" id=5]
+[ext_resource path="res://Controls.png" type="Texture" id=6]
+
+[node name="Settings" type="Control"]
+visible = false
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Setting_backround" type="TextureRect" parent="."]
+show_behind_parent = true
+margin_left = 0.0581284
+margin_top = 0.00963306
+margin_right = 1920.06
+margin_bottom = 1080.01
+texture = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CheckButton" type="CheckButton" parent="Setting_backround"]
+margin_left = 26.3789
+margin_top = 39.4939
+margin_right = 602.379
+margin_bottom = 247.494
+pressed = true
+icon = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Exit" type="Button" parent="Setting_backround"]
+margin_left = 1385.61
+margin_top = 834.385
+margin_right = 1885.61
+margin_bottom = 1048.39
+theme = ExtResource( 4 )
+text = "Exit"
+
+[node name="Controls" type="TextureButton" parent="Setting_backround"]
+margin_left = 1404.3
+margin_top = 581.9
+margin_right = 1854.3
+margin_bottom = 761.9
+texture_normal = ExtResource( 6 )
+texture_pressed = ExtResource( 6 )
+texture_hover = ExtResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Control_menu" type="TextureRect" parent="Setting_backround/Controls"]
+visible = false
+margin_left = -1377.39
+margin_top = -543.219
+margin_right = -377.388
+margin_bottom = 456.781
+texture = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="toggled" from="Setting_backround/CheckButton" to="." method="_on_CheckButton_toggled"]
+[connection signal="pressed" from="Setting_backround/Exit" to="." method="_on_Exit_pressed"]
+[connection signal="pressed" from="Setting_backround/Controls" to="." method="_on_Controls_pressed"]

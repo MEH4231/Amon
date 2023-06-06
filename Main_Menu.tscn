@@ -1,0 +1,154 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://Menu Backround.png" type="Texture" id=1]
+[ext_resource path="res://Amon idle facing left.png" type="Texture" id=2]
+[ext_resource path="res://amon font.tres" type="DynamicFont" id=3]
+[ext_resource path="res://theme.tres" type="Theme" id=4]
+[ext_resource path="res://icon.png" type="Texture" id=5]
+[ext_resource path="res://Main Menu.gd" type="Script" id=7]
+[ext_resource path="res://discord.png" type="Texture" id=8]
+[ext_resource path="res://RIP.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Settings.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Pause_Menu.tscn" type="PackedScene" id=11]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 2 ) ],
+"loop": true,
+"name": "New Anim",
+"speed": 1.0
+} ]
+
+[node name="Menu" type="Control"]
+pause_mode = 2
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 7 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Backround" type="TextureRect" parent="."]
+texture = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Amon label" type="Label" parent="Backround"]
+modulate = Color( 0.027451, 0.431373, 1, 1 )
+margin_left = 563.449
+margin_top = 111.842
+margin_right = 802.449
+margin_bottom = 176.842
+rect_scale = Vector2( 5, 5 )
+custom_fonts/font = ExtResource( 3 )
+text = "AMON"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Amon" type="AnimatedSprite" parent="Backround"]
+position = Vector2( 961.004, 625.334 )
+scale = Vector2( 2.76563, 2.58594 )
+frames = SubResource( 1 )
+animation = "New Anim"
+
+[node name="Exit" type="Button" parent="Backround"]
+margin_left = 27.0
+margin_top = 836.0
+margin_right = 527.0
+margin_bottom = 1050.0
+theme = ExtResource( 4 )
+text = "Exit"
+
+[node name="Start" type="Button" parent="Backround"]
+margin_left = 21.8873
+margin_top = 29.0589
+margin_right = 521.887
+margin_bottom = 243.059
+theme = ExtResource( 4 )
+text = "Start"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Discord" type="TextureButton" parent="Backround"]
+margin_left = 1818.03
+margin_top = 741.013
+margin_right = 1898.03
+margin_bottom = 818.013
+texture_normal = ExtResource( 8 )
+texture_pressed = ExtResource( 8 )
+texture_hover = ExtResource( 8 )
+expand = true
+stretch_mode = 4
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="godot_license" type="TextureButton" parent="Backround"]
+margin_left = 1824.84
+margin_top = 654.312
+margin_right = 1888.84
+margin_bottom = 718.312
+texture_normal = ExtResource( 5 )
+texture_pressed = ExtResource( 5 )
+texture_hover = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Settings_button" type="Button" parent="Backround"]
+margin_left = 1396.51
+margin_top = 843.828
+margin_right = 1896.51
+margin_bottom = 1057.83
+theme = ExtResource( 4 )
+text = "Settings"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Pause" parent="Backround/Settings_button" instance=ExtResource( 11 )]
+margin_left = -1988.77
+margin_top = -434.792
+margin_right = -1988.77
+margin_bottom = -434.792
+
+[node name="Settings" parent="Backround/Settings_button" instance=ExtResource( 10 )]
+anchor_left = -2.793
+anchor_top = -3.943
+anchor_right = -2.793
+anchor_bottom = -3.943
+margin_left = -0.219727
+margin_top = 0.28894
+margin_right = -0.219727
+margin_bottom = 0.28894
+
+[node name="Version" type="Label" parent="Backround"]
+anchor_top = -0.00155719
+anchor_bottom = -0.00155719
+margin_left = 1685.83
+margin_top = 11.3859
+margin_right = 1797.83
+margin_bottom = 59.3859
+rect_scale = Vector2( 2, 2 )
+custom_colors/font_color = Color( 0.172549, 0.0823529, 0.0823529, 1 )
+text = "                   0.1.6
+SPIDER UPDATE!!!
+and platform
+and save"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Camera2D" type="Camera2D" parent="Backround"]
+position = Vector2( 960, 540 )
+
+[node name="RIP" parent="." instance=ExtResource( 9 )]
+
+[connection signal="pressed" from="Backround/Exit" to="." method="_on_Exit_pressed"]
+[connection signal="pressed" from="Backround/Start" to="." method="_on_Start_pressed"]
+[connection signal="pressed" from="Backround/Discord" to="." method="_on_Discord_pressed"]
+[connection signal="pressed" from="Backround/godot_license" to="." method="_on_godot_license_pressed"]
+[connection signal="pressed" from="Backround/Settings_button" to="." method="_on_Settings_button_pressed"]
